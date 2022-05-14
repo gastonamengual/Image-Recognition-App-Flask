@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="container">
+
+  <form method="POST" action="{{ url_for('api.predictions_api.predict') }}" enctype="multipart/form-data">
+
+    <div class="row">
+      <h1>Iris Data set Prediction</h1>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+
+        <div class="md-form">
+          <label class="form-label">Sepal Length</label>
+          <input class="form-control" type="number" min=0 step=0.1 name="sepal_length" />
+        </div>
+
+        <div class="md-form">
+          <label class="form-label">Sepal Width</label>
+          <input class="form-control" type="number" min=0 step=0.1 name="sepal_width" />
+        </div>
+
+        <div class="md-form">
+          <label class="form-label">Petal Length</label>
+          <input class="form-control" type="number" min=0 step=0.1 name="petal_length" />
+        </div>
+
+        <div class="md-form">
+          <label class="form-label">Petal Width</label>
+          <input class="form-control" type="number" min=0 step=0.1 name="petal_width" />
+        </div>
+
+      </div>
+
+    </div>
+
+    <button class="btn btn-primary">Predict flower</button>
+
+    <h3>
+      {{prediction}}
+    </h3>
+
+  </form>
+
+</div>
+
+
+
+{% endblock %}
+
+{% block js %}
+  <script src="{{ url_for('static', filename='js/users.js') }}"></script>
+{% endblock %}
