@@ -1,20 +1,15 @@
-from werkzeug.datastructures import ImmutableMultiDict
+import io
+from ..models.model import Model
 import numpy as np
 
-from sklearn.datasets import load_iris
 
-from app.models.iris_gradient_boosting import IrisGradientBoosting
+def predict(image) -> str:
 
+    in_memory_file = io.BytesIO()
+    image.save(in_memory_file)
+    data = np.fromstring(in_memory_file.getvalue(), dtype=np.uint8)
 
-def predict(data: ImmutableMultiDict[str, float]) -> str:
+    model = Model()
+    prediction = model.predict(data)
 
-    X, y = load_iris(return_X_y=True)
-    model = IrisGradientBoosting()
-    model = model.fit(X, y)
-
-    X = np.array(list(data.to_dict(flat=True).values())).reshape(1, -1)
-    y_pred_int = model.predict(X)[0]
-
-    y_pred = np.choose(y_pred_int, ["Setosa", "Versicolor", "Virginica"])
-
-    return y_pred
+    return prediction

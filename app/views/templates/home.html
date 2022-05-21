@@ -7,43 +7,33 @@
   <form method="POST" action="{{ url_for('api.predictions_api.predict') }}" enctype="multipart/form-data">
 
     <div class="row">
-      <h1>Iris Data set Prediction</h1>
+      <h1>Object Recognition</h1>
     </div>
 
     <div class="row">
       <div class="col-4">
-
-        <div class="md-form">
-          <label class="form-label">Sepal Length</label>
-          <input class="form-control" type="number" min=0 step=0.1 name="sepal_length" />
-        </div>
-
-        <div class="md-form">
-          <label class="form-label">Sepal Width</label>
-          <input class="form-control" type="number" min=0 step=0.1 name="sepal_width" />
-        </div>
-
-        <div class="md-form">
-          <label class="form-label">Petal Length</label>
-          <input class="form-control" type="number" min=0 step=0.1 name="petal_length" />
-        </div>
-
-        <div class="md-form">
-          <label class="form-label">Petal Width</label>
-          <input class="form-control" type="number" min=0 step=0.1 name="petal_width" />
-        </div>
-
+        <input type="file" name="image" class="form-control" autocomplete="off">
       </div>
-
     </div>
 
-    <button class="btn btn-primary">Predict flower</button>
-
-    <h3>
-      {{prediction}}
-    </h3>
+    <button class="btn btn-primary">Predict image</button>
 
   </form>
+
+  <div class="row">
+    <img src="{{ url_for('static', filename='images/predictions/prediction.png') }}" width="400" height="400">
+
+  </div>
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul class=flashes>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
 
 </div>
 
@@ -52,5 +42,5 @@
 {% endblock %}
 
 {% block js %}
-  <script src="{{ url_for('static', filename='js/users.js') }}"></script>
+<script src="{{ url_for('static', filename='js/users.js') }}"></script>
 {% endblock %}
