@@ -52,9 +52,9 @@ class Model(AbstractModel[ModelConfig]):
                 text=classLabels[ClassInd],
                 org=(boxes[0] + 10, boxes[1] + 40),
                 fontFace=cv2.FONT_HERSHEY_PLAIN,
-                fontScale=8,
+                fontScale=6,
                 color=(0, 0, 255),
-                thickness=10,
+                thickness=8,
             )
 
         plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
