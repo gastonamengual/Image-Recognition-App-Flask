@@ -1,28 +1,49 @@
 {% extends 'layout.html' %}
 
+{% block css %}
+<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+{% endblock %}
+
 {% block content %}
 
 <div class="container">
 
-  <form method="POST" action="{{ url_for('api.predictions_api.predict') }}" enctype="multipart/form-data">
+  <form class="row justify-content-center align-items-center flex-column" method="POST"
+    action="{{ url_for('api.home_scope.file_image_recognition') }}" enctype="multipart/form-data">
+
+    <br><br>
 
     <div class="row">
       <h1>Object Recognition</h1>
     </div>
 
+    <br>
+
     <div class="row">
-      <div class="col-4">
-        <input type="file" name="image" class="form-control" autocomplete="off">
-      </div>
+      <input type="file" class="form-control" name="image" />
     </div>
 
-    <button class="btn btn-primary">Predict image</button>
+    <br>
+
+    <div class="row">
+      <button type="submit" class="btn btn-secondary btn-lg btn-rounded">Detect objects!</button>
+    </div>
 
   </form>
 
-  <div class="row">
-    <img src="{{ url_for('static', filename='images/predictions/prediction.png') }}" width="400" height="400">
+  <form class="row justify-content-center align-items-center flex-column" method="POST"
+    action="{{ url_for('api.home_scope.real_time') }}" enctype="multipart/form-data">
 
+    <div class="row">
+      <button type="submit" class="btn btn-primary btn-lg btn-rounded">Real-time recognition</button>
+    </div>
+
+  </form>
+
+  <br>
+  <div class="row">
+    <img src="{{ url_for('static', filename='images/predictions/prediction.png') }}" style="width: 100%;
+    height: 100%;">
   </div>
 
   {% with messages = get_flashed_messages() %}
@@ -37,10 +58,4 @@
 
 </div>
 
-
-
-{% endblock %}
-
-{% block js %}
-<script src="{{ url_for('static', filename='js/users.js') }}"></script>
 {% endblock %}
