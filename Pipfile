@@ -12,8 +12,7 @@ gunicorn = "==20.1.0"
 requests = "*"
 jupyter = "*"
 pillow = "*"
-# opencv-python = "*"
-opencv-contrib-python-headless = "*
+opencv-python = "*"
 
 [requires]
 python_version = "3.9"
