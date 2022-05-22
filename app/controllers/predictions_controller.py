@@ -1,4 +1,3 @@
-from ast import Mod
 import io
 from ..models.model import Model, ModelConfig
 import numpy as np
