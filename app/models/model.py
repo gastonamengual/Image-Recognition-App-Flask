@@ -52,7 +52,7 @@ class Model(AbstractModel[ModelConfig]):
                 text=classLabels[ClassInd],
                 org=(boxes[0] + 10, boxes[1] + 40),
                 fontFace=cv2.FONT_HERSHEY_PLAIN,
-                fontScale=16,
+                fontScale=12,
                 color=(0, 0, 255),
                 thickness=8,
             )
