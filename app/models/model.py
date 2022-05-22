@@ -46,13 +46,13 @@ class Model(AbstractModel[ModelConfig]):
         for ClassInd, conf, boxes in zip(
             ClassIndex.flatten(), confidence.flatten(), bbox
         ):
-            cv2.rectangle(img, boxes, (255, 0, 0), 3)
+            cv2.rectangle(img, boxes, (255, 0, 0), 6)
             cv2.putText(
                 img=img,
                 text=classLabels[ClassInd],
                 org=(boxes[0] + 10, boxes[1] + 40),
                 fontFace=cv2.FONT_HERSHEY_PLAIN,
-                fontScale=6,
+                fontScale=16,
                 color=(0, 0, 255),
                 thickness=8,
             )
